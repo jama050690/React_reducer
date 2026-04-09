@@ -19,6 +19,13 @@ export type AddTodoPayload = Pick<Todo, "name">
 
 export type DropTodoPayload = Pick<Todo, "id">
 
+export type PatchTodoPayload = {
+	id: Todo["id"]
+	changes: Partial<Omit<Todo, "id">>
+}
+
+export type PutTodoPayload = Todo
+
 export type StoreAction =
 	| {
 		type: "TODO_ADD"
@@ -27,6 +34,14 @@ export type StoreAction =
 	| {
 		type: "TODO_DROP"
 		value: DropTodoPayload
+	}
+	| {
+		type: "TODO_PATCH"
+		value: PatchTodoPayload
+	}
+	| {
+		type: "TODO_PUT"
+		value: PutTodoPayload
 	}
 
 export type TodoEvent =
@@ -37,6 +52,14 @@ export type TodoEvent =
 	| {
 		type: "DROP"
 		todo: DropTodoPayload
+	}
+	| {
+		type: "PATCH"
+		todo: PatchTodoPayload
+	}
+	| {
+		type: "PUT"
+		todo: PutTodoPayload
 	}
 
 export type StoreContextValue = {

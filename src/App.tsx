@@ -1,6 +1,7 @@
 import "./App.css"
 import { useState, useEffect } from "react"
 import type { ChangeEvent } from "react"
+import { App as StoreApp } from "./Store"
 import type { Book } from "./types"
 
 type CountsResponse = {
@@ -77,7 +78,7 @@ function Pagination( { countOfButtons, countOfPages, currentPage, onChange }: Pa
 	)
 }
 
-export function App() {
+export function BooksApp() {
 
 	const [ isLoading, setIsLoading ] = useState( true )
 	const [ category, setCategory ] = useState( "0" )
@@ -195,4 +196,9 @@ export function App() {
 
 		</div>
 	)
+}
+
+export function App() {
+
+	return <StoreApp />
 }

@@ -14,6 +14,10 @@ export function reducer( state: StoreState, action: StoreAction ): StoreState {
 			return TodoActions.TODO_ADD( state, action.value )
 		case "TODO_DROP":
 			return TodoActions.TODO_DROP( state, action.value )
+		case "TODO_PATCH":
+			return TodoActions.TODO_PATCH( state, action.value )
+		case "TODO_PUT":
+			return TodoActions.TODO_PUT( state, action.value )
 	}
 }
 

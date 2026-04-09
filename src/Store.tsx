@@ -2,6 +2,7 @@ import "./App.css";
 import { useReducer } from "react";
 import { Todos } from "./pages/Todos";
 import { StoreContext, reducer } from "./contexts/StoreContext";
+import { todoActionCreators } from "./actions";
 import { data } from "./data/data";
 import type { TodoEvent } from "./types";
 
@@ -9,13 +10,20 @@ export function App() {
   const [{ todos }, dispatcher] = useReducer(reducer, data);
 
   const setTodos = (evt: TodoEvent) => {
-    if (evt.type === "ADD") {
-      dispatcher({ type: "TODO_ADD", value: evt.todo });
-
-      return;
+    switch (evt.type) {
+      case "ADD":
+        dispatcher(todoActionCreators.add(evt.todo));
+        return;
+      case "DROP":
+        dispatcher(todoActionCreators.drop(evt.todo));
+        return;
+      case "PATCH":
+        dispatcher(todoActionCreators.patch(evt.todo));
+        return;
+      case "PUT":
+        dispatcher(todoActionCreators.put(evt.todo));
+        return;
     }
-
-    dispatcher({ type: "TODO_DROP", value: evt.todo });
   };
 
   return (
